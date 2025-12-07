@@ -22,13 +22,7 @@
         <img
             v-if="trip.activities.length && trip.activities[0].images.length"
             class="w-full h-40 rounded-md object-cover"
-            :src="
-                trip.activities.length
-                    ? trip.activities[0].images.length
-                        ? trip.activities[0].images[0].image_url
-                        : ''
-                    : ''
-            "
+            :src="trip.activities[0].images[0].image_url"
             alt=""
         />
 
@@ -41,6 +35,7 @@
         </div>
 
         <div
+            data-testid="delete-button"
             class="bg-red-500 py-1 px-3 rounded-md text-white inline-block mt-5 cursor-pointer font-semibold"
             @click="deleteTrip"
         >
@@ -50,23 +45,23 @@
 </template>
 
 <script setup>
-//import ref
-import { ref } from "vue";
 import axios from "axios";
-import { onMounted } from "vue";
 
-//define props
 const props = defineProps({
-    trip: Object,
+    trip: {
+        type: Object,
+        required: true,
+    },
 });
+
+const emit = defineEmits(["tripDeleted"]);
 
 const deleteTrip = async () => {
     try {
         await axios.delete(`api/trips/${props.trip.id}`);
+        emit("tripDeleted", props.trip.id);
     } catch (error) {
         console.error(error);
     }
-    // Optionally, you can emit an event to notify the parent component to refresh the trip list
-    emit("tripDeleted", props.trip.id);
 };
 </script>

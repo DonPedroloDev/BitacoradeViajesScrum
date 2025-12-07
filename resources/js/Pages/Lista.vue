@@ -1,10 +1,7 @@
 <template>
     <div class="relative">
-        <img
-            class="w-full h-96 object-cover"
-            src="/img/banner-lista.jpg"
-            alt="Logo"
-        />
+        <img class="w-full h-96 object-cover" :src="bannerLista" alt="Logo" />
+
         <div
             class="absolute left-0 top-0 w-full h-full flex items-center justify-center bg-[#43380F]/60 text-white"
         >
@@ -24,6 +21,7 @@
                 v-for="trip in trips"
                 :key="trip.id"
                 :trip="trip"
+                @tripDeleted="handleTripDeleted"
             />
         </div>
     </div>
@@ -32,11 +30,11 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import axios from "axios";
-import { onMounted } from "vue";
-import { ref } from "vue";
-const emit = defineEmits(["tripDeleted"]);
+import { onMounted, ref } from "vue";
 
 import FichaViajeLista from "@/Components/FichaViajeLista.vue";
+// 👇 IMPORTA el banner como asset
+import bannerLista from "../img/banner-lista.jpg";
 
 const trips = ref([]);
 

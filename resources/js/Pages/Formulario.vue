@@ -28,8 +28,9 @@
 
                 <!-- TÍTULO -->
                 <div class="field-group">
-                    <label>Título</label>
+                    <label for="titulo">Título</label>
                     <input
+                        id="titulo"
                         :class="[
                             'text-input',
                             { 'input-error': errors.titulo },
@@ -41,7 +42,7 @@
 
                 <!-- DESTINO / ORIGEN -->
                 <div class="field-group">
-                    <label>Destino</label>
+                    <label for="destino-input">Destino</label>
 
                     <div class="destino-row">
                         <div class="segment-control">
@@ -51,9 +52,9 @@
                                 value="origen"
                                 v-model="tipoDestino"
                             />
-                            <label class="segment left" for="origen"
-                                >Origen</label
-                            >
+                            <label class="segment left" for="origen">
+                                Origen
+                            </label>
 
                             <button
                                 class="swap-btn"
@@ -69,12 +70,15 @@
                                 value="destino"
                                 v-model="tipoDestino"
                             />
-                            <label class="segment" for="destino">Destino</label>
+                            <label class="segment" for="destino">
+                                Destino
+                            </label>
                         </div>
                     </div>
 
                     <div class="autocomplete">
                         <input
+                            id="destino-input"
                             :class="[
                                 'text-input',
                                 { 'input-error': errors.destino },
@@ -122,7 +126,7 @@
 
                 <!-- FECHAS -->
                 <div class="field-group">
-                    <label>Fecha</label>
+                    <label for="fecha-inicio">Fecha</label>
 
                     <div class="date-row">
                         <div
@@ -132,7 +136,11 @@
                             ]"
                         >
                             <span>Inicio</span>
-                            <input type="date" v-model="fechaInicio" />
+                            <input
+                                id="fecha-inicio"
+                                type="date"
+                                v-model="fechaInicio"
+                            />
                         </div>
 
                         <div
@@ -142,7 +150,11 @@
                             ]"
                         >
                             <span>Final</span>
-                            <input type="date" v-model="fechaFinal" />
+                            <input
+                                id="fecha-final"
+                                type="date"
+                                v-model="fechaFinal"
+                            />
                         </div>
                     </div>
                 </div>
@@ -237,8 +249,9 @@
 
                 <!-- TIPO DE VIAJE -->
                 <div class="field-group">
-                    <label>Tipo de viaje</label>
+                    <label for="tipo-viaje">Tipo de viaje</label>
                     <select
+                        id="tipo-viaje"
                         :class="[
                             'select-input',
                             { 'input-error': errors.tipoViaje },
@@ -258,8 +271,9 @@
 
                 <!-- NOTAS -->
                 <div class="field-group">
-                    <label>Notas de viaje</label>
+                    <label for="notas-viaje">Notas de viaje</label>
                     <textarea
+                        id="notas-viaje"
                         class="text-area"
                         v-model="notas"
                         placeholder="Escribe tus notas de viaje..."
@@ -608,6 +622,7 @@ const guardarViaje = () => {
 }
 
 .field-group label {
+    display: block;
     font-size: 12px;
     font-weight: 600;
     color: #6b7280;
